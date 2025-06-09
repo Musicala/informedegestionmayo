@@ -532,15 +532,18 @@ textarea:focus {
 }
 
 .firmas-campos {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
   margin-top: 2rem;
 }
 
-.columna-firma {
-  flex: 1;
-  min-width: 300px;
+/* Aseguramos que los inputs de sólo lectura se vean como texto */
+.columna-firma input[readonly] {
+  border: none;
+  background: transparent;
+  font-weight: bold;
+  color: #333;
 }
 
 .columna-firma input[type="text"],
@@ -552,6 +555,32 @@ textarea {
   font-size: 1rem;
   border-radius: 6px;
   border: 1px solid #ccc;
+}
+
+/* Campos siempre rellenados y sin bordes */
+.columna-firma input[readonly] {
+  border: none;
+  background: transparent;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Contenedor fijo para la firma */
+.firma-vacia {
+  width: 200px;
+  height: 100px;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* La imagen de la firma dentro del contenedor */
+.firma-vacia img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .firma-vacia {
@@ -753,3 +782,93 @@ textarea {
   .recomendaciones li strong {
     color: #1a1a1a;
   }
+
+  .tabla-evaluacion .contenido {
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  background-color: #fdfdfd;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  box-sizing: border-box;
+
+  /* 👇 Este es el que corrige los puntos */
+  list-style-position: inside;
+}
+
+.tabla-evaluacion .contenido ul {
+  margin-left: 1rem;
+}
+
+.firma-vacia {
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid #888;
+  margin-top: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.columna-firma input[readonly] {
+  border: none;
+  background: transparent;
+  font-weight: bold;
+  color: #333;
+}
+
+.columna-firma {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.columna-firma label {
+  margin-bottom: 0.3rem; /* añade un pequeño espacio entre "Firma:" y la línea */
+}
+
+/* 🔥 Tarjeta bacaneada para firmas */
+.tarjeta-firma {
+  background: linear-gradient(135deg, #f9f9f9, #ffffff);
+  border: 1px solid #ddd;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-firma:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta-firma h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #222;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.4rem;
+}
+
+.tarjeta-firma p {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.tarjeta-firma label {
+  margin-top: 0.8rem;
+  display: block;
+  font-weight: 500;
+  color: #444;
+}
+
+.tarjeta-firma input {
+  margin-bottom: 1rem;
+}
+
+/* Asegura que se vea bonito al imprimir también */
+@media print {
+  .tarjeta-firma {
+    box-shadow: none;
+    border: none;
+  }
+}
